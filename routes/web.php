@@ -45,3 +45,21 @@ Route::post('karyawan/add', 'KaryawanController@store');
 Route::get('karyawan/{id}/edit', 'KaryawanController@edit');
 Route::patch('karyawan/{id}/edit', 'KaryawanController@update');
 Route::delete('karyawan/{id}/delete', 'KaryawanController@destroy');
+
+//Produk
+Route::get('produk', 'ProdukController@index');
+Route::get('produk/add', 'ProdukController@create');
+Route::post('produk/add', 'ProdukController@store');
+
+Route::get('produk/{id}/edit', 'ProdukController@edit');
+Route::patch('produk/{id}/edit', 'ProdukController@update');
+Route::delete('produk/{id}/delete', 'ProdukController@destroy');
+
+//Bangunan
+Route::get('bangunan', 'BangunanController@index');
+Route::get('bangunan/add', 'BangunanController@create');
+Route::post('bangunan/add', 'BangunanController@store');
+
+Route::get('bangunan/{id}/edit', 'BangunanController@edit');
+Route::patch('bangunan/{id}/edit', 'BangunanController@update');
+Route::delete('bangunan/{id}/delete', 'BangunanController@destroy');

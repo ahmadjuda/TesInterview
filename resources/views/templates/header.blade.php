@@ -107,6 +107,17 @@
             <li><a href="{{ asset('produk') }}"> Master Produk</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-book"></i> <span>Layanan</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ asset('bangunan') }}"> Arsitek Rumah</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

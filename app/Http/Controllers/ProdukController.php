@@ -6,5 +6,70 @@ use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
-    //
+    public function index()
+    {
+    	$data['result'] = \App\Produk::all();
+    	return view('produk/index')->with($data);
+    }
+
+    public function create()
+    {
+    	return view('produk/form');
+    }
+
+    public function store(Request $request)
+    {
+    	$rules = [
+    		'kode'				=>	'required',
+    		'nama_produk'		=>	'required|max:100',
+    		'harga'				=>	'required',
+    		'panjang'			=>	'required',
+    		'lebar'				=>	'required',
+    		'tinggi'			=>	'required',
+    		'id_jenis_produk'	=>	'required|exists:jenis_produk'
+    	];
+    	$this->validate($request, $rules);
+
+    	$input = $request->all();
+    	$status = \App\Produk::create($input);
+
+    	if ($status) return redirect('produk')->with('success', 'Data berhasil ditambahkan');
+    	else return redirect('produk')->with('error', 'Data gagal ditambahkan');
+    }
+
+    public function edit($id)
+    {
+    	$data['result'] = \App\Produk::where('id_produk', $id)->first();
+    	return view('produk/form')->with($data);
+    }
+
+    public function update(Request $request, $id)
+    {
+    	$rules = [
+    		'kode'				=>	'required',
+    		'nama_produk'		=>	'required|max:100',
+    		'harga'				=>	'required',
+    		'panjang'			=>	'required',
+    		'lebar'				=>	'required',
+    		'tinggi'			=>	'required',
+    		'id_jenis_produk'	=>	'required|exists:jenis_produk'
+    	];
+    	$this->validate($request, $rules);
+
+    	$input = $request->all();
+    	$result = \App\Produk::where('id_produk', $id)->first();
+    	$status = $result->update($input);
+
+    	if ($status) return redirect('produk')->with('success', 'Data berhasil diubah');
+    	else return redirect('produk')->with('error', 'Data gagal diubah');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+    	$result = \App\Produk::where('id_produk', $id)->first();
+    	$status	= $result->delete();
+
+    	if ($status) return redirect('produk')->with('success', 'Data berhasil dihapus');
+    	else return redirect('produk')->with('error', 'Data gagal dihapus');
+    }
 }
